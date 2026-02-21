@@ -1,0 +1,126 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+\usecolortheme{beaver} % A nice dark red theme fitting for steel/metallurgy
+
+\title{The Physics of Steel}
+\subtitle{Governing Differential Equations: From Furnace to Failure}
+\author{Metallurgy \& Physics}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+% --- SECTION 1: FORMATION ---
+\section{1. Formation: Heat and Phase Transformations}
+
+\begin{frame}{Formation: Heat Transfer}
+    \textbf{The Heat Equation} \\
+    Controlling the cooling rate is critical to determining the final crystalline structure (e.g., Martensite vs. Pearlite). The temperature distribution $T$ over time $t$ is governed by:
+
+    $$\rho C_p \frac{\partial T}{\partial t} = \nabla \cdot (k \nabla T) + \dot{Q}$$
+
+    \begin{itemize}
+        \item $\rho$: Density
+        \item $C_p$: Specific heat capacity
+        \item $k$: Thermal conductivity
+        \item $\dot{Q}$: Internal heat generation
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Formation: Carbon Diffusion}
+    \textbf{Fick's Second Law} \\
+    The migration of Carbon atoms through the Iron lattice in real space:
+    $$\frac{\partial C}{\partial t} = D \frac{\partial^2 C}{\partial x^2}$$
+
+    \vspace{0.5cm}
+    \textbf{Fourier Space Representation} \\
+    Transforming to the frequency domain $k$ reveals that diffusion acts as a low-pass filter, rapidly smoothing out sharp concentration gradients:
+    $$\frac{\partial \tilde{C}(k,t)}{\partial t} = -D k^2 \tilde{C}(k,t)$$
+\end{frame}
+
+\begin{frame}{Formation: Diffusion in a Periodic Lattice}
+    \textbf{The Smoluchowski Equation} \\
+    When accounting for the periodic potential $V_{Fe}$ of the crystalline grid, diffusion includes a drift term:
+    $$\frac{\partial C}{\partial t} = \nabla \cdot \left( D \nabla C + \frac{D}{k_B T} C (\nabla V_{Fe}) \right)$$
+
+    \vspace{0.5cm}
+    \textbf{The Low-Temperature Limit} \\
+    As $T \to 0$, the equilibrium distribution of Carbon atoms becomes strictly locked into the interstitial minima, mathematically forming a periodic Dirac comb:
+    $$C(x) \propto \lim_{T \to 0} \exp\left[ \frac{V_{amp}}{k_B T} \cos\left(\frac{2\pi x}{L}\right) \right]$$
+\end{frame}
+
+\begin{frame}{Formation: Phase Transformation Kinetics}
+    \textbf{The JMAK Equation} \\
+    The Johnson-Mehl-Avrami-Kolmogorov (JMAK) equation tracks the volumetric fraction $f$ of the steel that has transformed into a new phase:
+
+    $$\frac{df}{dt} = n \cdot K \cdot t^{n-1} (1 - f)$$
+
+    \begin{itemize}
+        \item $f$: Fraction of transformed material
+        \item $n$: Avrami exponent (depends on nucleation type)
+        \item $K$: Temperature-dependent rate constant
+    \end{itemize}
+\end{frame}
+
+% --- SECTION 2: MICROSTRUCTURE ---
+\section{2. Microstructure Evolution}
+
+\begin{frame}{Microstructure: Phase-Field Models}
+    \textbf{Allen-Cahn / Cahn-Hilliard Equations} \\
+    To model the physical shape and evolution of grains (like dendrites) or spinodal decomposition, we track a continuous phase-field variable $\phi$. The system evolves to minimize total free energy $F$:
+
+    $$\frac{\partial \phi}{\partial t} = -M \left( \frac{\delta F}{\delta \phi} \right)$$
+
+    \begin{itemize}
+        \item $\phi$: Phase-field order parameter
+        \item $M$: Mobility parameter
+        \item $\frac{\delta F}{\delta \phi}$: Variational derivative of the free energy functional
+    \end{itemize}
+\end{frame}
+
+% --- SECTION 3: DEGRADATION ---
+\section{3. Degradation: Corrosion and Fatigue}
+
+\begin{frame}{Degradation: Electrochemical Corrosion}
+    \textbf{The Butler-Volmer Equation} \\
+    Corrosion is an electrochemical decay process driven by overpotential $\eta$. The rate of metal loss (current density $j$) is given by:
+
+    $$j = j_0 \left\{ \exp \left[ \frac{\alpha_a z F \eta}{RT} \right] - \exp \left[ -\frac{\alpha_c z F \eta}{RT} \right] \right\}$$
+
+    \begin{itemize}
+        \item $j_0$: Exchange current density
+        \item $\alpha_a, \alpha_c$: Anodic and cathodic charge transfer coefficients
+        \item $\eta$: Overpotential (driving force)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Degradation: Mechanical Fatigue}
+    \textbf{Paris' Law} \\
+    Under cyclic mechanical loading, microscopic defects grow into macroscopic fractures. The crack growth rate per load cycle $N$ is governed by an ordinary differential equation:
+
+    $$\frac{da}{dN} = C(\Delta K)^m$$
+
+    \begin{itemize}
+        \item $a$: Crack length
+        \item $N$: Number of load cycles
+        \item $\Delta K$: Stress intensity factor range
+        \item $C, m$: Material constants
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Summary}
+    \begin{center}
+        \Large Steel is a dynamic material governed by a continuous balance of thermodynamics and kinetics. \\
+        \vspace{1cm}
+        From the high-temperature PDEs of diffusion and heat flow to the cyclic ODEs of structural fatigue, differential equations define its entire life cycle.
+    \end{center}
+\end{frame}
+
+\end{document}
