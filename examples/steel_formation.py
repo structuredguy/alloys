@@ -1,4 +1,5 @@
-# This script solves the full time-dependent Partial Differential Equation (PDE) using the "Method of Lines." It shows how an initially random distribution of Carbon eventually "finds" the holes in the Iron grid.
+# This script solves the full time-dependent Partial Differential Equation (PDE) using the "Method of Lines." It
+# shows how an initially random distribution of Carbon eventually "finds" the holes in the Iron grid.
 
 #%% setup
 import numpy as np
@@ -19,7 +20,7 @@ V_amp = 5.0  # Amplitude of Iron Grid Potential (Interaction strength)
 # %% --- 2. Define the Potentials ---
 # Iron Grid Potential: V(x) = V_amp * cos(2*pi*x / L)
 # We make the period L/2 so we see two "wells" in the plot
-k_vec = 2 * np.pi / L
+k_vec = 2 * np.pi / L 
 V = V_amp * np.cos(k_vec * x)
 
 # Pre-calculate the force (-dV/dx) acting on Carbon
@@ -96,7 +97,7 @@ plt.ylabel("Concentration / Potential")
 plt.legend()
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
-plot.savefig('../img/time_evolution.png', dpi=300)
+plt.savefig('../img/time_evolution.png', dpi=300)
 plt.show()
 
 # %% --- 7. Plotting Dirac Delta Limit ---
@@ -146,5 +147,5 @@ plt.annotate('As $T \\to 0$, Width $\\to 0$',
              fontsize=10)
 
 plt.tight_layout()
-plt.savefig('../dirac_delta_limit.png', dpi=300)
+plt.savefig('../img/dirac_delta_limit.png', dpi=300)
 plt.show()
